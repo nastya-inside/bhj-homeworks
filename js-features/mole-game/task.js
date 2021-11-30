@@ -1,22 +1,20 @@
 window.onload = function () {    
         
-let arrHoles = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
-    
-    for (let j = 1; j < arrHoles.length; j++) {
-        
-        document.getElementById('hole' + j).innerHTML = arrHoles [j-1];
-        
-        arrHoles[j].onclick = function(){
-            let deadCounter = 0;
+let allHoles = document.querySelectorAll(".hole");
+let deadCounter = 0;
+let lostCounter = 0;
+
+    for (let i = 1; i < allHoles.length; i++) {
+                
+            allHoles[i].onclick = function(){
             document.getElementById('dead').innerHTML = deadCounter;
-            let lostCounter = 0;
             document.getElementById('lost').innerHTML = lostCounter;
             
-            if (hole.classList.contains('hole_has-mole')) {
-                isDead++;
+            if (allHoles[i].classList.contains('hole_has-mole')) {
+                deadCounter++;
             }
             else {
-                isLost++;
+                lostCounter++;
             }
             
             if (deadCounter === 10) {
@@ -27,8 +25,6 @@ let arrHoles = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
                 alert('You are looser');
                 lostCounter = 0;
             }
-        }
-        
+        } 
     }
-    
 }
