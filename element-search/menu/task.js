@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
         item.addEventListener('click', function (e) {
                         
             let hasParent = item.closest(".menu__item");
+            let sub_menu = hasParent.querySelector(".menu_sub");
             
-            if (hasParent) {
-                let sub_menu = hasParent.querySelector(".menu_sub");
+            if (sub_menu) {
                 sub_menu.classList.toggle("menu_active");
             }
                    
