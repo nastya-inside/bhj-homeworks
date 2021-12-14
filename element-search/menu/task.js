@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
             
             if (sub_menu) {
                 sub_menu.classList.toggle("menu_active");
+                e.preventDefault();
             }
                    
-        e.preventDefault();
                         
         });
     });
