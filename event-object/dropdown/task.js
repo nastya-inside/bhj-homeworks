@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', function () {
             button.textContent = 'Fortran';
         }   
             
+        dropdown_list.classList.remove('dropdown__list_active');
+            
         e.preventDefault();
        });      
     }       
