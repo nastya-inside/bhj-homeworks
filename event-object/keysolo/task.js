@@ -22,18 +22,17 @@ class Game {
         
         let requiredSymbol = this.currentSymbol;
         let gotSymbol = e.key;
-        let gotSymbolArr = Array.from(gotSymbol);
-        let requiredSymbolArr = Array.from(requiredSymbol);
+                
+        let requiredSymbolString = String.fromCharCode(requiredSymbol);
+        let gotSymbolString = String.fromCharCode(gotSymbol);
         
-        for (let i = 0; i < gotSymbolArr.length; i++) {
-            for (let j = 0; j < requiredSymbolArr.length; j++) {
-            if (requiredSymbolArr[j] === gotSymbolArr[i]) {
-            this.success();
-            } else {
+        if (requiredSymbolString === gotSymbolString) {
+           this.success();
+        } else {
             this.fail();
-            } 
-            }
-            }        
+        }
+        
+        
     });   
   }
 
