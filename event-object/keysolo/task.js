@@ -15,23 +15,25 @@ class Game {
     this.winsElement.textContent = 0;
     this.lossElement.textContent = 0;
   }
-
+    
   registerEvents() {
-      
+    
+      let that = this;
+            
     document.addEventListener('keyup', function (e) {
         
         let requiredSymbol = this.currentSymbol;
         let gotSymbol = e.key;
+    
                 
         let requiredSymbolString = String.fromCharCode(requiredSymbol);
         let gotSymbolString = String.fromCharCode(gotSymbol);
         
         if (requiredSymbolString === gotSymbolString) {
-           this.success();
+             that.success();
         } else {
-            this.fail();
+             that.fail();
         }
-        
         
     });   
   }
