@@ -22,19 +22,18 @@ class Game {
             
     document.addEventListener('keyup', function (e) {
         
-        let requiredSymbol = this.currentSymbol;
+        let requiredSymbol = that.currentSymbol;
         let gotSymbol = e.key;
-    
                 
-        let requiredSymbolString = String.fromCharCode(requiredSymbol);
-        let gotSymbolString = String.fromCharCode(gotSymbol);
-        
-        if (requiredSymbolString === gotSymbolString) {
+        let requiredSymbolString = requiredSymbol.textContent;
+                
+    for (let i = 0; i < requiredSymbolString.length; i++) {
+        if (requiredSymbolString === gotSymbol) {
              that.success();
         } else {
              that.fail();
         }
-        
+    }
     });   
   }
 
