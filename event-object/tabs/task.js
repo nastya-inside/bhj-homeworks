@@ -1,33 +1,26 @@
 document.addEventListener('DOMContentLoaded', function () {
-    let tabs = document.querySelectorAll(".tab");
-    let tabsArr = Array.from(tabs);
+    let tab = document.querySelectorAll(".tab");
     let tabContent = document.querySelectorAll(".tab__content");
-    let tabContentArr = Array.from(tabContent);
     
-    for (let i = 0; i < tabsArr.length; i++) {
-        
-    tabsArr[i].addEventListener('click', function (e) {
+
+    for (let i = 0; i < tab.length; i++) {
+
+        tab[i].addEventListener("click", function(e){
+            
         //ищем классы и индексы активных элементов
         let activeTab = document.querySelector(".tab_active");
         let activeContent = document.querySelector(".tab__content_active");
-        let indexOfActiveTab = tabsArr.indexOf(activeTab);
-        let indexOfActiveContent = tabContentArr.indexOf(activeContent);
-                
-        //выбираем активную вкладку
-        let lastClicked = activeTab;
-        lastClicked.classList.remove('tab_active');
-        this.classList.add("tab_active");
         
-        //устанавливаем активный блок с контентом
-        for (let j = 0; j < tabContentArr; j++) {
-            if (indexOfActiveTab === 1) {
-                activeContent.style.display = "none";
-                //let addIndex = indexOfActiveContent + 1;
-                //addIndex.style.display = "block";
-            }
-        }
-    
-
-    });
+        activeTab.classList.remove('tab_active');
+        tab[i].classList.add('tab_active');
+        
+        activeContent.classList.remove('tab__content_active');
+        tabContent[i].classList.add('tab__content_active');
+            
+        e.preventDefault();
+        });
+      
     }
+    
+    
 });
