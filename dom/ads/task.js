@@ -1,21 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
-    let rotators = document.getElementsByClassName("rotator__case");
+    let rotators = document.querySelectorAll(".rotator__case");
+    let activeRotator = document.querySelector('.rotator__case_active');
+    let index = 0;
+        
+    function setActiveElement() {
+        rotators[index].classList.remove('rotator__case_active');
+        rotators[++index].classList.add('rotator__case_active');
+        
+    }
               
      setInterval(() => {
-            
-   for (let i = 0; i < rotators.length; i++) {
-                          
-   function findActiveElement () {
-       let activeElement = document.querySelector('.rotator__case_active');
-       
-       activeElement.classList.remove('rotator__case_active');
-       rotators[i].classList.add('rotator__case_active');
-       
-   }
-       
-       findActiveElement();
-   }
-    
+     setActiveElement()
 }, 1000)
 
 });
