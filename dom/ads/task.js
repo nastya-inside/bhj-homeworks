@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', function () {
         rotators[index].classList.remove('rotator__case_active');
         rotators[++index].classList.add('rotator__case_active');
         
+        if (index < rotators.lenght) {
+            index === 0;
+}
+        
     }
               
      setInterval(() => {
