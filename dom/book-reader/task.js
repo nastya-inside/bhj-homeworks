@@ -3,18 +3,18 @@ document.addEventListener('DOMContentLoaded', function () {
     let content = document.getElementsByClassName('book');
     let menuActiveElement = document.querySelector('.font-size_active');
         
-    for (let i = 0; i < menuElement.length; i++) {
-    
-        menuElement[i].classList.add('font-size_active');
-        menuElement[i].classList.remove('font-size_active');
-    
+    for (let i = 0; i < menuElement.length; i++) {    
                 
         menuElement[i].addEventListener("click", function(e){
             
-        menuActiveElement.classList.remove('font-size_active');
-                        
         e.preventDefault();
-                        
+            
+        menuElement[0].classList.remove('font-size_active');
+        menuElement[1].classList.remove('font-size_active');
+        menuElement[2].classList.remove('font-size_active');    
+        this.classList.add('font-size_active');
+
+            
         if (this.hasAttribute('data-size')){
            let value = this.getAttribute('data-size');
                       
