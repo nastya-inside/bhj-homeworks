@@ -34,6 +34,11 @@ document.addEventListener('DOMContentLoaded', function () {
     
         let messageArr = messagesArr[Math.floor(Math.random()*messagesArr.length)];
         
+        function clear() {
+            input.value = '';
+        }
+        
+        if (input.value != ''){
         if (e.keyCode == 13) {
         chat.innerHTML += `
         <div class="message message_client">
@@ -41,18 +46,16 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="message__text">${e.target.value}</div>
         </div>
         `; 
-        
+        clear();
         messages.innerHTML += `
         <div class="message">
         <div class="message__time">${currentTime}</div>
         <div class="message__text">${messageArr}</div>
         </div>
         `;
-        
-        //проверка на пустое значение 
-        if (input.value == ' '){
-            e.preventDefault();
-          }
         }    
+        } else {
+            return
+        }
     });   
 });
