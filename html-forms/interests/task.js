@@ -5,24 +5,20 @@ document.addEventListener('DOMContentLoaded', function () {
     for (let i = 0; i < checkBoxes.length; i++){
     checkBoxes[i].addEventListener('change', function (){
         
-     //найдем родетельский элемент, который будет называться "parentInput"
-       let li = this.closest('li');
-       let ul = li.closest('ul');
-       let liInterest = ul.closest('li');
-       let parentInput = liInterest.querySelector('.interest__check');
+    let parent = checkBoxes[i].closest('.interest');
+    let children = parent.querySelectorAll('.interest__check');
+                
+    if (checkBoxes[i].checked === true) {
+        for (let j = 0; j < children.length; j++){
+            children[j].checked = true;
+        }
+    } 
         
-    //найдем дочерние чекбоксы
-        let childInputs = ul.querySelectorAll('.interest__check');
-        console.log(childInputs)
-        
-        if (parentInput.checked) {
-          childInputs.checked;
-       }   
-     
-        
+    if (checkBoxes[i].checked === false) {
+        for (let j = 0; j < children.length; j++){
+            children[j].checked = false;
+        }
+    }  
     });
-    }
-    
-        
-    
+    }  
 });
