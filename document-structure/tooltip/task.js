@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
         let parent = tips[i].parentNode;
         parent.insertBefore(div, tips[i]); 
         div.classList.add("tooltip_active"); 
+        div.innerHTML = "tip";
+            
         });
     }   
 });
