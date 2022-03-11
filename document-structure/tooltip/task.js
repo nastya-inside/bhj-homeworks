@@ -7,9 +7,15 @@ document.addEventListener('DOMContentLoaded', function () {
     div.classList.add('tooltip');
     
     for (let i = 0; i < tips.length; i++){
-            
+        
         tips[i].addEventListener('click', function (e){ 
         e.preventDefault();
+        
+        let pos = tips[i].getBoundingClientRect();
+            
+        //выравнивание подсказки
+        div.style.top =  pos.top - "20px";
+        div.style.left = pos.left - "20px";
             
         let parent = tips[i].parentNode;
         parent.insertBefore(div, tips[i]); 
