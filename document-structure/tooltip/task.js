@@ -14,11 +14,13 @@ document.addEventListener('DOMContentLoaded', function () {
         let pos = tips[i].getBoundingClientRect();
             
         //выравнивание подсказки
-        div.style.top =  pos.top - "20px";
-        div.style.left = pos.left - "20px";
+        div.style.top =  pos.top - 40;
+        div.style.left = pos.left;
+        div.style.position = "relative";
+        div.style.width = "fit-content";
             
         let parent = tips[i].parentNode;
-        parent.insertBefore(div, tips[i]); 
+        parent.insertBefore(div, tips[i]);
         div.classList.add("tooltip_active"); 
         div.innerHTML = "tip";
             
