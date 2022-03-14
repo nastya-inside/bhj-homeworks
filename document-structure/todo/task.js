@@ -28,9 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById("tasks__list").appendChild(a);
         a.innerHTML = "&times;";
         container.appendChild(a);
-        
-        //очистим инпут
-        document.getElementById("task__input").value = "";
+      
         
         //закрытие элемента списка по клику на кнопку 
         for (let i = 0; i < a.length; i++) {
@@ -38,13 +36,15 @@ document.addEventListener('DOMContentLoaded', function () {
         let element = this.parentElement;
         element.style.display = "none";
         });    
-    }
+    } 
+        //очистим инпут
+        document.getElementById("task__input").value = "";
     } 
     
     //повесим обработчик событий на кнопку
-    btn.addEventListener("click", function () {
+    btn.addEventListener("click", function (e) {
+        e.preventDefault();
         newElementOfList();
     });
-
     
 });
