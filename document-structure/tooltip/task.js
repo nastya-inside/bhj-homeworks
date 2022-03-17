@@ -8,22 +8,28 @@ document.addEventListener('DOMContentLoaded', function () {
     
     for (let i = 0; i < tips.length; i++){
         
-        tips[i].addEventListener('click', function (e){ 
+        tips[i].onclick = function (e){ 
         e.preventDefault();
         
         let pos = tips[i].getBoundingClientRect();
             
         //выравнивание подсказки
-        div.style.top =  pos.top - 40;
-        div.style.left = pos.left;
-        div.style.position = "relative";
-        div.style.width = "fit-content";
+        div.style.top =  pos.top + 20 + "px";
+        div.style.left = pos.left + 1 + "px";
             
         let parent = tips[i].parentNode;
         parent.insertBefore(div, tips[i]);
         div.classList.add("tooltip_active"); 
-        div.innerHTML = "tip";
+        div.innerHTML = tips[i].getAttribute('title');
             
-        });
+        if (div.style.display == "block") {
+            div.style.display = "none";
+        } else {
+            div.style.display = "block";
+        }
+        };
+        
+        
+        
     }   
 });
