@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function () {
     //создадим функцию, которая будет добавлять новый эл-т списка 
     function newElementOfList () {
         const div = document.createElement("div");
-        let inputValue = document.getElementById("task__input").value;
-        const t = document.createTextNode(inputValue);
+        let input = document.getElementById("task__input");
+        const t = document.createTextNode(input.value);
         div.classList.add("task__title");
         div.appendChild(t);
         
@@ -13,12 +13,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const container = document.createElement("div");
         container.classList.add("task");
         
-        if (inputValue.charAt(0) === '' || inputValue.charAt(0) === ' ') {
-            inputValue = '';
-        } else {
-            document.getElementById("tasks__list").appendChild(container);
-            container.appendChild(div);
-       }
+        if (!input.value.trim()) {
+            return;
+        }
+        
+        document.getElementById("tasks__list").appendChild(container);
+        container.appendChild(div);
+       
         
         //создадим ссылку, которая будет являться типо кнопкой закрытия
         const a = document.createElement("a");
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         
         //очистим инпут
-        document.getElementById("task__input").value = "";
+        input.value = "";
     } 
     
     //повесим обработчик событий на кнопку
