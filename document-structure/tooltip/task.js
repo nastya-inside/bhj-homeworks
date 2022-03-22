@@ -19,17 +19,11 @@ document.addEventListener('DOMContentLoaded', function () {
             
         let parent = tips[i].parentNode;
         parent.insertBefore(div, tips[i]);
-        div.classList.add("tooltip_active"); 
-        div.innerHTML = tips[i].getAttribute('title');
+        div.innerHTML = tips[i].getAttribute('title');  
             
-        if (div.style.display == "block") {
-            div.style.display = "none";
-        } else {
-            div.style.display = "block";
-        }
-        };
-        
-        
+        div.classList.toggle("tooltip_active");
+            
+       };
         
     }   
 });
