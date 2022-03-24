@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //создадим элемент подсказки 
     let div = document.createElement('div');
     div.classList.add('tooltip');
+    let numOfClicks = 0;
     
     for (let i = 0; i < tips.length; i++){
         
@@ -12,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         
         let pos = tips[i].getBoundingClientRect();
+        numOfClicks++;
             
         //выравнивание подсказки
         div.style.top =  pos.top + 20 + "px";
@@ -19,11 +21,11 @@ document.addEventListener('DOMContentLoaded', function () {
             
         let parent = tips[i].parentNode;
         parent.insertBefore(div, tips[i]);
-        div.innerHTML = tips[i].getAttribute('title');  
+        div.innerHTML = tips[i].getAttribute('title'); 
             
-        div.classList.toggle("tooltip_active");
-            
-       };
-        
+        if (div.textContent === tips[i].getAttribute("title") && numOfClicks === 1) {
+            div.classList.toggle("tooltip_active");
+        }             
+       };    
     }   
 });
