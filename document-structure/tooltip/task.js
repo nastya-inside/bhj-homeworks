@@ -1,31 +1,69 @@
 document.addEventListener('DOMContentLoaded', function () {
-    
-    let tips = document.querySelectorAll('.has-tooltip');
+    let links = document.querySelectorAll('.has-tooltip');
     
     //создадим элемент подсказки 
-    let div = document.createElement('div');
-    div.classList.add('tooltip');
-    let numOfClicks = 0;
+    const $tooltip = document.createElement("div")
+    $tooltip.classList.add("tooltip")
     
-    for (let i = 0; i < tips.length; i++){
+    // Ссылка, которую нажали последний раз
+    let clickedLink = null
+    
+    for (let i = 0; i < links.length; i++){
+        const $link = links[i]
         
-        tips[i].onclick = function (e){ 
-        e.preventDefault();
+        $link.onclick = function (event) {
+        event.preventDefault()
         
-        let pos = tips[i].getBoundingClientRect();
-        numOfClicks++;
-            
-        //выравнивание подсказки
-        div.style.top =  pos.top + 20 + "px";
-        div.style.left = pos.left + 1 + "px";
-            
-        let parent = tips[i].parentNode;
-        parent.insertBefore(div, tips[i]);
-        div.innerHTML = tips[i].getAttribute('title'); 
-            
-        if (div.textContent === tips[i].getAttribute("title") && numOfClicks === 1) {
-            div.classList.toggle("tooltip_active");
-        }             
-       };    
+        //сравнение запомненной ссылки с нажатой
+        if (clickedLink === $link) {
+        hideTooltip($tooltip)
+        clickedLink = null
+      } else {
+        clickedLink = $link
+        showTooltip($link, $tooltip)
+      }
+    }
     }   
 });
+
+function showTooltip($link, $tooltip) {
+  const linkPosition = $link.getBoundingClientRect()
+
+  // Вставка подсказки в DOM
+  const $parent = $link.parentNode
+  $parent.insertBefore($tooltip, $link)
+  $tooltip.innerHTML = $link.getAttribute("title")
+
+  // Расчет позиции подсказки
+  let top = linkPosition.top
+  let left = linkPosition.left
+
+  // Показать подсказку
+  $tooltip.classList.add("tooltip_active")
+
+  // Добавление смещения если указано положение подсказки
+  const tooltipPositionType = $link.dataset.position
+  const tooltipPosition = $tooltip.getBoundingClientRect()
+  if (tooltipPositionType) {
+    if (tooltipPositionType === "top") {
+      top -= tooltipPosition.height
+    }
+    if (tooltipPositionType === "left") {
+      left -= tooltipPosition.width
+    }
+    if (tooltipPositionType === "right") {
+      left += linkPosition.width
+    }
+  } else {
+    top += 20
+  }
+
+  // Установка позиции подсказки
+  $tooltip.style.top = top + "px"
+  $tooltip.style.left = left + "px"
+}
+
+function hideTooltip($tooltip) {
+  $tooltip.classList.remove("tooltip_active")
+}
+
