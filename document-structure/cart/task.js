@@ -3,14 +3,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const products = document.querySelectorAll(".product");
     //контейнер продуктов в корзине
     const cartProducts = document.querySelector(".cart__products");
+    //найдем элементы продуктов в контейнере продуктов 
+    let cartProduct = cartProducts.getElementsByClassName("cart__product");
     
     for (let i = 0; i < products.length; i++) {
-        const $product = products[i];
+        const product = products[i];
         
-        const plusButton = $product.querySelector(".product__quantity-control_inc");
-        const minusButton = $product.querySelector(".product__quantity-control_dec");
-        const addToCartButton = $product.querySelector(".product__add");
-        const productsCount = $product.querySelector(".product__quantity-value");
+        const plusButton = product.querySelector(".product__quantity-control_inc");
+        const minusButton = product.querySelector(".product__quantity-control_dec");
+        const addToCartButton = product.querySelector(".product__add");
+        const productsCount = product.querySelector(".product__quantity-value");
         
         plusButton.onclick = function (event) {
             event.preventDefault();
@@ -29,21 +31,36 @@ document.addEventListener('DOMContentLoaded', function () {
         addToCartButton.onclick = function (event) {
             event.preventDefault();
             
+            //скопируем атрибут data-id
+            const productId = product.getAttribute('data-id');
+            
             //создать новый продукт в корзине
-            const cartProduct = document.createElement("div");
-            cartProduct.classList.add("cart__product");
+            const newcartProduct = document.createElement("div");
+            newcartProduct.classList.add("cart__product");
+            //добавим продукту нужный атрибут
+            newcartProduct.setAttribute("data-id", productId);
             
             //в новый продукт скопируем изображение и счетчик
-            const clonedImage = $product.querySelector(".product__image").cloneNode(true);
+            const clonedImage = product.querySelector(".product__image").cloneNode(true);
             clonedImage.classList.add("cart__product-image");
-            const clonedProductCounter = $product.querySelector(".product__quantity-value").cloneNode(true);
+            let clonedProductCounter = product.querySelector(".product__quantity-value").cloneNode(true);
             clonedProductCounter.classList.add("cart__product-count");
             
             //добавим в новый контейнер продукта картинку и счетчик
-            cartProduct.appendChild(clonedImage);
-            cartProduct.appendChild(clonedProductCounter);
+            newcartProduct.appendChild(clonedImage);
+            newcartProduct.appendChild(clonedProductCounter);
+            cartProducts.appendChild(newcartProduct);
             
-            cartProducts.appendChild(cartProduct);
+            /*
+            let arrayOfProducts = Array.from(cartProduct);
+            arrayOfProducts.find(function(element, id){
+                if (productId === newcartProduct.getAttribute('data-id')) {
+                    
+                } else {
+                    return;
+                }
+            });
+           */
             
         }    
     }  
