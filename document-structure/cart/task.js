@@ -26,14 +26,19 @@ document.addEventListener('DOMContentLoaded', function () {
             if (productsCount.textContent > 1) {
                  productsCount.textContent--;
             }
-        }
-        
+        }     
+            
+    
         addToCartButton.onclick = function (event) {
             event.preventDefault();
             
-            //скопируем атрибут data-id
+              //скопируем атрибут data-id
             const productId = product.getAttribute('data-id');
             
+            //найдем товар в корзине
+            const productArr = Array.from(cartProduct);
+            const result = productArr.find(el => el.getAttribute('data-id') === 1);
+           
             //создать новый продукт в корзине
             const newcartProduct = document.createElement("div");
             newcartProduct.classList.add("cart__product");
@@ -51,17 +56,26 @@ document.addEventListener('DOMContentLoaded', function () {
             newcartProduct.appendChild(clonedProductCounter);
             cartProducts.appendChild(newcartProduct);
             
-            /*
-            let arrayOfProducts = Array.from(cartProduct);
-            arrayOfProducts.find(function(element, id){
-                if (productId === newcartProduct.getAttribute('data-id')) {
-                    
-                } else {
-                    return;
-                }
-            });
-           */
-            
         }    
-    }  
+    }
+/* 
+//тренировочка 
+
+const basket = [
+    {
+        id: 1,
+        name: 'js book',
+        price: 4389,
+    },
+    {
+        id: 2,
+        name: 'css book',
+        price: 8998,
+    },
+];
+   const result = basket.find(el => el.name === 'js book');
+    
+    console.log(result);
+*/
+    
 });
