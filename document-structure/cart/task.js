@@ -35,26 +35,31 @@ document.addEventListener('DOMContentLoaded', function () {
               //скопируем атрибут data-id
             const productId = product.getAttribute('data-id');
             
-            //найдем товар в корзине
+             //найдем товар в корзине
             const productArr = Array.from(cartProduct);
-            const result = productArr.find(el => el.getAttribute('data-id') === 1);
-           
-            //создать новый продукт в корзине
-            const newcartProduct = document.createElement("div");
-            newcartProduct.classList.add("cart__product");
-            //добавим продукту нужный атрибут
-            newcartProduct.setAttribute("data-id", productId);
+            const existingProduct = productArr.find(el => el.getAttribute('data-id') === productId);
             
-            //в новый продукт скопируем изображение и счетчик
-            const clonedImage = product.querySelector(".product__image").cloneNode(true);
-            clonedImage.classList.add("cart__product-image");
-            let clonedProductCounter = product.querySelector(".product__quantity-value").cloneNode(true);
-            clonedProductCounter.classList.add("cart__product-count");
-            
-            //добавим в новый контейнер продукта картинку и счетчик
-            newcartProduct.appendChild(clonedImage);
-            newcartProduct.appendChild(clonedProductCounter);
-            cartProducts.appendChild(newcartProduct);
+            if (existingProduct) {
+                const counter = existingProduct.querySelector('.cart__product-count')
+                counter.textContent = Number(counter.textContent) + Number(product.querySelector(".product__quantity-value").textContent)
+            } else {
+                //создать новый продукт в корзине
+                const newcartProduct = document.createElement("div");
+                newcartProduct.classList.add("cart__product");
+                //добавим продукту нужный атрибут
+                newcartProduct.setAttribute("data-id", productId);
+                
+                //в новый продукт скопируем изображение и счетчик
+                const clonedImage = product.querySelector(".product__image").cloneNode(true);
+                clonedImage.classList.add("cart__product-image");
+                let clonedProductCounter = product.querySelector(".product__quantity-value").cloneNode(true);
+                clonedProductCounter.classList.add("cart__product-count");
+                
+                //добавим в новый контейнер продукта картинку и счетчик
+                newcartProduct.appendChild(clonedImage);
+                newcartProduct.appendChild(clonedProductCounter);
+                cartProducts.appendChild(newcartProduct);
+            }
             
         }    
     }
